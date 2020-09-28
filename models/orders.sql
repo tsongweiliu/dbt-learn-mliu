@@ -4,9 +4,9 @@ with orders as (
 
 ),
 
-payments as (
+payment as (
 
-    select * from {{ ref('stg_payments') }}
+    select * from {{ ref('stg_payment') }}
 
 ),
 
@@ -16,12 +16,12 @@ final as (
     orders.order_id,
     orders.order_date,
     orders.customer_id,
-    payments.amount
+    payment.amount
 
 from orders
 
 
-left join payments using (order_id)
+left join payment using (order_id)
 
 )
 
